@@ -1,0 +1,6 @@
+site_name: Manual for Docutent Distiller API
+site_author: MONTANA Tudásmenedzsment Kft.
+use_directory_urls: true
+
+theme:
+  name: material

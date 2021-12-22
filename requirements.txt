@@ -1,0 +1,12 @@
+matplotlib
+pandas
+numpy
+git+https://bitbucket.org/montanatudasmenedzsmentkft/distiller.git#egg=Distiller
+tqdm
+sklearn
+cyhunspell
+importlib_resources
+tika
+regex
+roman
+python-Levenshtein
