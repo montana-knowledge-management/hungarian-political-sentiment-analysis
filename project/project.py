@@ -9,11 +9,7 @@ from digital_twin_distiller import ml_project
 from digital_twin_distiller.modelpaths import ModelDir
 from preprocessing import PreprocessInput
 from predict import PredictSentiment
-from pathlib import Path
 from digital_twin_distiller.encapsulator import Encapsulator
-from importlib_resources import files
-from fastapi.staticfiles import StaticFiles
-
 
 class SentimentAnalyzerProject(ml_project.MachineLearningProject):
 

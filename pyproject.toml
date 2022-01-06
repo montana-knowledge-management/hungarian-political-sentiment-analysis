@@ -16,7 +16,7 @@ python = "3.9"
 # Dependencies for developers
 hunspell = "^0.5.5"
 digital-twin-distiller = "^2021.13"
-hungarian-stemmer = "^2021.1"
+hungarian-stemmer = "^2022.1"
 # list all devtools here
 [tool.poetry.dev-dependencies]
 black = "*"

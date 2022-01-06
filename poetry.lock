@@ -505,7 +505,7 @@ python-versions = ">=3.6"
 
 [[package]]
 name = "hungarian-stemmer"
-version = "2021.1"
+version = "2022.1"
 description = "Hungarian stemmer package to perform higher quality stemming in Hungarian."
 category = "main"
 optional = false
@@ -1560,7 +1560,7 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 [metadata]
 lock-version = "1.1"
 python-versions = "3.9"
-content-hash = "e57dd995549c227fc787906ea1fac087776720253d4874215b0aa04e1bdb65b3"
+content-hash = "2a08052736f69b756c4fa65602b2bc2d3e5cfd0484ceaf0215fed8f4275ff354"
 
 [metadata.files]
 aiofiles = [
@@ -1996,8 +1996,8 @@ h11 = [
     {file = "h11-0.12.0.tar.gz", hash = "sha256:47222cb6067e4a307d535814917cd98fd0a57b6788ce715755fa2b6c28b56042"},
 ]
 hungarian-stemmer = [
-    {file = "hungarian_stemmer-2021.1-py3-none-any.whl", hash = "sha256:df1b09d12b008343ea55bf579aed8ce3431b955c5869065fab19b86e243999f2"},
-    {file = "hungarian_stemmer-2021.1.tar.gz", hash = "sha256:ec26f94df78113fb08097cea9a701def97ef8bdc151c5b976e385db2450cc861"},
+    {file = "hungarian-stemmer-2022.1.tar.gz", hash = "sha256:8521be5dc868aeada47067362a1d3abaeed1c66da4b596dcb7672ea43ae0a6bb"},
+    {file = "hungarian_stemmer-2022.1-py3-none-any.whl", hash = "sha256:67a0dd5a2a601d01bef2e9ee3b770dad4ea5f3d077451f2dafab5dc372ef3dc3"},
 ]
 hunspell = [
     {file = "hunspell-0.5.5.tar.gz", hash = "sha256:0f830b68bd8c392f4d5b4e21c38e28809e14d64ec67bde48272c920b63686f53"},
