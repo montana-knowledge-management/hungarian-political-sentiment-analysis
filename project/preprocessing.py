@@ -2,7 +2,8 @@ import re
 import string
 import hunspell
 
-from distiller.concept import PreProcessorAbstract
+from hungarian_stemmer.hungarian_stemmer import HungarianStemmer
+from digital_twin_distiller.ml_project import PreProcessorAbstract
 from importlib_resources import files
 
 
@@ -250,12 +251,14 @@ class PreprocessInput(PreProcessorAbstract):
 
     @staticmethod
     def monSpellStem(text : str):
-        hunspell_path = files("resources") / 'monstem' / 'hu_HU'
-        hunspell_obj = hunspell.Hunspell(str(hunspell_path), str(hunspell_path))
+        # hunspell_path = files("resources") / 'monstem' / 'hu_HU'
+        # hunspell_obj = hunspell.Hunspell(str(hunspell_path), str(hunspell_path))
+
+        hunstem = HungarianStemmer()
 
         returnlist = list()
         for token in text.split(" "):
-            result = hunspell_obj.stem(token)
+            result = hunstem.stem(token)
             asString = ""
             for item in result:
                 asString = asString + " " + item

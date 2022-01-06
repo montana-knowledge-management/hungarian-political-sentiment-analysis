@@ -5,16 +5,17 @@ currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 
-from distiller.concept import AbstractProject
+from digital_twin_distiller import ml_project
+from digital_twin_distiller.modelpaths import ModelDir
 from preprocessing import PreprocessInput
 from predict import PredictSentiment
 from pathlib import Path
-from distiller.server import Server
+from digital_twin_distiller.encapsulator import Encapsulator
 from importlib_resources import files
 from fastapi.staticfiles import StaticFiles
 
 
-class SentimentAnalyzerProject(AbstractProject):
+class SentimentAnalyzerProject(ml_project.MachineLearningProject):
 
     def custom_input(self, input_dict : dict):
         self._input_data.append(input_dict)
@@ -31,20 +32,25 @@ class SentimentAnalyzerProject(AbstractProject):
 
 
 if __name__ == "__main__":
+    ModelDir.set_base(__file__)
+
     # runs the project server
     app = SentimentAnalyzerProject(app_name="Sentiment Analyzer based on Distiller", no_cache=True)
 
-    pp = Path("../docs").absolute()
+    # pp = Path("../docs").absolute()
 
-    server = Server(app)
-    server.set_project_mkdocs_dir_path(pp)
+    server = Encapsulator(app)
+    server.build_docs()
+    server.run()
+    # server.set_project_mkdocs_dir_path(pp)
 
     # Mounting folders of the default mkdocs documentation to the application.
-    server.app.mount(
-        "/images",
-        StaticFiles(directory=files("docs") / "site" / "images"),
-        name="images",
-    )
+    # server.app.mount(
+    #     "/images",
+    #     StaticFiles(directory=files("docs") / "site" / "images"),
+    #     name="images",
+    # )
 
-    server.host = "127.0.0.1"
-    server.run()
+
+    # server.host = "127.0.0.1"
+    # server.run()
