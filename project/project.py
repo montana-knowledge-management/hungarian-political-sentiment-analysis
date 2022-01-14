@@ -33,20 +33,6 @@ if __name__ == "__main__":
     # runs the project server
     app = SentimentAnalyzerProject(app_name="Sentiment Analyzer based on Distiller", no_cache=True)
 
-    # pp = Path("../docs").absolute()
-
     server = Encapsulator(app)
     server.build_docs()
     server.run()
-    # server.set_project_mkdocs_dir_path(pp)
-
-    # Mounting folders of the default mkdocs documentation to the application.
-    # server.app.mount(
-    #     "/images",
-    #     StaticFiles(directory=files("docs") / "site" / "images"),
-    #     name="images",
-    # )
-
-
-    # server.host = "127.0.0.1"
-    # server.run()

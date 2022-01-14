@@ -1,11 +1,11 @@
 #Felhasználói kézikönyv a Distiller Sentiment Analysis API használatához
 
 
-Az implementáció alapja a MONTANA Tudásmenedzsment Kft. [Docutent Distiller](https://bitbucket.org/montanatudasmenedzsmentkft/distiller) keretrendszere.
+Az implementáció alapja a MONTANA Tudásmenedzsment Kft. [Digital Twin Distiller](https://github.com/montana-knowledge-management/digital-twin-distiller) keretrendszere.
 
 ## Használat
 
-Az API az adatot JSON formátumban várja az alábbi formátum szerint:
+Az API az adatot JSON formátumban várja, az elemzendő mondatot a "text" attribútum értékeként megadva:
 
 ```
 {
@@ -15,33 +15,63 @@ Az API az adatot JSON formátumban várja az alábbi formátum szerint:
 
 ## Háttér
 
-Az implementációban használt Support Vector Machine (SVM) modell a [TK-Milab](https://milab.tk.hu/hu) [Doménspecifikus szentimentelemzési-eljárás kidolgozása magyar nyelvű szövegek elemzésére](https://milab.tk.hu/domenspecifikus-szentimentelemzesi-eljaras-kidolgozasa-magyar-nyelvu-szovegek-elemzesere) projekt keretében készülő, mondat szinten kézzel annotált korpusz első 3600 mondatán lett tanítva.
+Az implementációban használt Support Vector Machine (SVM) modellek a [TK-Milab](https://milab.tk.hu/hu) [Doménspecifikus szentimentelemzési-eljárás kidolgozása magyar nyelvű szövegek elemzésére](https://milab.tk.hu/domenspecifikus-szentimentelemzesi-eljaras-kidolgozasa-magyar-nyelvu-szovegek-elemzesere) projekt keretében készülő, mondat szinten kézzel címkézett korpusz első 3600 mondatán tanult.
 
-A kopruszt két független annotátor címkézte, majd egy szakértő validálta. A címkék megoszlása a validált adathalmazban: 
+### Alap adatok
 
-![statistics](images/distribution.png)
+* A kopruszt két független annotátor címkézte, majd eltérő címkék esetében egy szakértő választotta ki a végső címkét.
+* A gépi tanításhoz az eredeti 5700 mondatos korpuszból csak azon mondatok lettek felhasználva, amelyek eredetileg is egyetértésben lettek annotálva a két címkéző által.
+* A korpuszban az egyetértés növelése érdekében induktív kategóriarendszert (Ring et.al.2022) alkalmaztunk, amelyet a későbbiekben vezettünk vissza a Plutchik által alkalmazott 
+8 elemű emóció kategória rendszer elemeire.
+
+<br>
+
+|                       Címkézési rendszer                        |               Az egyes címkék megoszlása (%)               |
+|:---------------------------------------------------------------:|:----------------------------------------------------------:|
+| <img src="images/categories.png" alt="categories" width="600"/> | <img src="images/tk_milab2.png" alt="distro" width="600"/> |
+
+<center>
+
+**Az egyes címkék megoszlása (db - mondat)** <br>
+<img src="images/distribution.png" alt="disto2" width="400"/>
+</center>
+<br>
+
 
 Tekintettel arra, hogy a korpuszban kizárólag újsághírek szerepeltek, illetve arra,
 hogy a tanítás során az tanítóhalmaz elemeit egymondatos szövegek adták, 
 az éles működés során is hasonló bemeneten (újsághírek egymondatos egységein) 
 várható a legjobb eredmény.
 
-A betanítás során a SVM modell a következő legjobb eredményeket érte el:
+### Az elkészült modellek
+<br>
 
-|category|precision              | recall           |f1-score|
-|-----------|:---------------------|:----------------|:--------|
-|Anger|0.45|0.43|0.44|
-Anticipation|0.59|0.70|0.64|
-|Disgust|0.56|0.54|0.55|
-|Fear|1.00|0.08|0.15|
-|Joy|1.00|0.14|0.25|
-|Sadness|0.56|0.47|0.51|
-|Trust|0.71|0.74|0.73|
-| | | | |
-|accuracy| | |0.58|
-|macro avg|0.70|0.44|0.47|
-|weighted avg|0.59|0.58|0.57|
+A modelleket az eredeti emóció kategóriákra, valamint az abból aggregált pozitív/negatív szentiment osztályokra is elvégeztük. A kapott modellek megtalálhatók a projekt `resources/Multiclass_case` mappájában, alapértelmezésként az alkalmazás a pozitív/negatív címkézésre alkalmas modellt használja.
 
+A betanítás során a SVM modell a következő eredményeket érte el emóció kategóriák szerinti bontásban:
+
+<center>
+
+| Emóció kategória | Pontosság | Fedés | F1 érték |
+|------------------|:----------|:------|:---------|
+| Anger            | 0.45      | 0.43  | 0.44     |
+| Anticipation     | 0.59      | 0.70  | 0.64     |
+| Disgust          | 0.56      | 0.54  | 0.55     |
+| Fear             | 1.00      | 0.08  | 0.15     |
+| Joy              | 1.00      | 0.14  | 0.25     |
+| Sadness          | 0.56      | 0.47  | 0.51     |
+| Trust            | 0.71      | 0.74  | 0.73     |
+|                  |           |       |          |
+| accuracy         |           |       | 0.58     |
+| macro avg        | 0.70      | 0.44  | 0.47     |
+| weighted avg     | 0.59      | 0.58  | 0.57     |
+
+</center>
+<br>
+
+A korpusz kiegyensúlyozatlansága miatt a jelenleg az API-ban használt modellek a fenti kategóriákat pozitív/negatív szentiment kategóriákra aggregáltuk a következők szerint: 
+* Pozitív címkét kapott: 
+* Negatív címkét kapott: 
 
 ## Endpoint-ok
 
@@ -55,4 +85,4 @@ Anticipation|0.59|0.70|0.64|
 
 ## Az integrált teszt interfész használata az `/apidocs` endpoint-on
 
-![Használat](images/tutorial.gif)
+![Használat](images/usage_.gif)

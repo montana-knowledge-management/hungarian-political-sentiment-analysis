@@ -9,12 +9,14 @@ class PredistionTestCase(unittest.TestCase):
 
         #külön teszt mondatokkal poz/neg/neutral -- mindere egy-egy def_poz_sentence -- elnevezes
 
+        svm = PredictSentiment()
+
         path = files("resources") / 'Test_cases' / 'disgust.json'
         dictionary = dict()
         with open(path) as json_file:
             dictionary = json.load(json_file)
 
-        svm = PredictSentiment()
+
         predicted_emotion = svm.predict_emotion(dictionary['text'])
         expected_emotion = dictionary["label"]
 

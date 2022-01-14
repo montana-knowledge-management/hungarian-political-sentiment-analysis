@@ -16,7 +16,7 @@
     
     
       
-        <title>Manual for Docutent Distiller API</title>
+        <title>Manual for Distiller Sentiment API</title>
       
     
     
@@ -76,7 +76,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Manual for Docutent Distiller API" class="md-header__button md-logo" aria-label="Manual for Docutent Distiller API" data-md-component="logo">
+    <a href="." title="Manual for Distiller Sentiment API" class="md-header__button md-logo" aria-label="Manual for Distiller Sentiment API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -89,7 +89,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Manual for Docutent Distiller API
+            Manual for Distiller Sentiment API
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -163,13 +163,13 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Manual for Docutent Distiller API" class="md-nav__button md-logo" aria-label="Manual for Docutent Distiller API" data-md-component="logo">
+    <a href="." title="Manual for Distiller Sentiment API" class="md-nav__button md-logo" aria-label="Manual for Distiller Sentiment API" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
 
     </a>
-    Manual for Docutent Distiller API
+    Manual for Distiller Sentiment API
   </label>
   
   <ul class="md-nav__list" data-md-scrollfix>
@@ -227,6 +227,26 @@
   <a href="#hatter" class="md-nav__link">
     Háttér
   </a>
+  
+    <nav class="md-nav" aria-label="Háttér">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alap-adatok" class="md-nav__link">
+    Alap adatok
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#az-elkeszult-modellek" class="md-nav__link">
+    Az elkészült modellek
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -291,6 +311,26 @@
     Háttér
   </a>
   
+    <nav class="md-nav" aria-label="Háttér">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alap-adatok" class="md-nav__link">
+    Alap adatok
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#az-elkeszult-modellek" class="md-nav__link">
+    Az elkészült modellek
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -321,29 +361,58 @@
                 
                 
                 <h1 id="felhasznaloi-kezikonyv-a-distiller-sentiment-analysis-api-hasznalatahoz">Felhasználói kézikönyv a Distiller Sentiment Analysis API használatához</h1>
-<p>Az implementáció alapja a MONTANA Tudásmenedzsment Kft. <a href="https://bitbucket.org/montanatudasmenedzsmentkft/distiller">Docutent Distiller</a> keretrendszere.</p>
+<p>Az implementáció alapja a MONTANA Tudásmenedzsment Kft. <a href="https://github.com/montana-knowledge-management/digital-twin-distiller">Digital Twin Distiller</a> keretrendszere.</p>
 <h2 id="hasznalat">Használat</h2>
-<p>Az API az adatot JSON formátumban várja az alábbi formátum szerint:</p>
+<p>Az API az adatot JSON formátumban várja, az elemzendő mondatot a "text" attribútum értékeként megadva:</p>
 <pre><code>{
   &quot;text&quot;: &quot;Szép napunk van.&quot;
 }
 </code></pre>
 <h2 id="hatter">Háttér</h2>
-<p>Az implementációban használt Support Vector Machine (SVM) modell a <a href="https://milab.tk.hu/hu">TK-Milab</a> <a href="https://milab.tk.hu/domenspecifikus-szentimentelemzesi-eljaras-kidolgozasa-magyar-nyelvu-szovegek-elemzesere">Doménspecifikus szentimentelemzési-eljárás kidolgozása magyar nyelvű szövegek elemzésére</a> projekt keretében készülő, mondat szinten kézzel annotált korpusz első 3600 mondatán lett tanítva.</p>
-<p>A kopruszt két független annotátor címkézte, majd egy szakértő validálta. A címkék megoszlása a validált adathalmazban: </p>
-<p><img alt="statistics" src="images/distribution.png" /></p>
+<p>Az implementációban használt Support Vector Machine (SVM) modellek a <a href="https://milab.tk.hu/hu">TK-Milab</a> <a href="https://milab.tk.hu/domenspecifikus-szentimentelemzesi-eljaras-kidolgozasa-magyar-nyelvu-szovegek-elemzesere">Doménspecifikus szentimentelemzési-eljárás kidolgozása magyar nyelvű szövegek elemzésére</a> projekt keretében készülő, mondat szinten kézzel címkézett korpusz első 3600 mondatán tanult.</p>
+<h3 id="alap-adatok">Alap adatok</h3>
+<ul>
+<li>A kopruszt két független annotátor címkézte, majd eltérő címkék esetében egy szakértő választotta ki a végső címkét.</li>
+<li>A gépi tanításhoz az eredeti 5700 mondatos korpuszból csak azon mondatok lettek felhasználva, amelyek eredetileg is egyetértésben lettek annotálva a két címkéző által.</li>
+<li>A korpuszban az egyetértés növelése érdekében induktív kategóriarendszert (Ring et.al.2022) alkalmaztunk, amelyet a későbbiekben vezettünk vissza a Plutchik által alkalmazott 
+8 elemű emóció kategória rendszer elemeire.</li>
+</ul>
+<p><br></p>
+<table>
+<thead>
+<tr>
+<th align="center">Címkézési rendszer</th>
+<th align="center">Az egyes címkék megoszlása (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><img src="../images/categories.png" alt="categories" width="600"/></td>
+<td align="center"><img src="images/tk_milab2.png" alt="distro" width="600"/></td>
+</tr>
+</tbody>
+</table>
+<p><center></p>
+<p><strong>Az egyes címkék megoszlása (db - mondat)</strong> <br>
+<img src="~/images/distribution.png" alt="disto2" width="400"/>
+</center>
+<br></p>
 <p>Tekintettel arra, hogy a korpuszban kizárólag újsághírek szerepeltek, illetve arra,
 hogy a tanítás során az tanítóhalmaz elemeit egymondatos szövegek adták, 
 az éles működés során is hasonló bemeneten (újsághírek egymondatos egységein) 
 várható a legjobb eredmény.</p>
-<p>A betanítás során a SVM modell a következő legjobb eredményeket érte el:</p>
+<h3 id="az-elkeszult-modellek">Az elkészült modellek</h3>
+<p><br></p>
+<p>A modelleket az eredeti emóció kategóriákra, valamint az abból aggregált pozitív/negatív szentiment osztályokra is elvégeztük. A kapott modellek megtalálhatók a projekt <code>resources/Multiclass_case</code> mappájában, alapértelmezésként az alkalmazás a pozitív/negatív címkézésre alkalmas modellt használja.</p>
+<p>A betanítás során a SVM modell a következő eredményeket érte el emóció kategóriák szerinti bontásban:</p>
+<p><center></p>
 <table>
 <thead>
 <tr>
-<th>category</th>
-<th align="left">precision</th>
-<th align="left">recall</th>
-<th align="left">f1-score</th>
+<th>Emóció kategória</th>
+<th align="left">Pontosság</th>
+<th align="left">Fedés</th>
+<th align="left">F1 érték</th>
 </tr>
 </thead>
 <tbody>
@@ -415,6 +484,11 @@ várható a legjobb eredmény.</p>
 </tr>
 </tbody>
 </table>
+<p></center>
+<br></p>
+<p>A korpusz kiegyensúlyozatlansága miatt a jelenleg az API-ban használt modellek a fenti kategóriákat pozitív/negatív szentiment kategóriákra aggregáltuk a következők szerint: 
+* Pozitív címkét kapott: 
+* Negatív címkét kapott: </p>
 <h2 id="endpoint-ok">Endpoint-ok</h2>
 <ul>
 <li>
@@ -431,7 +505,7 @@ várható a legjobb eredmény.</p>
 </li>
 </ul>
 <h2 id="az-integralt-teszt-interfesz-hasznalata-az-apidocs-endpoint-on">Az integrált teszt interfész használata az <code>/apidocs</code> endpoint-on</h2>
-<p><img alt="Használat" src="images/tutorial.gif" /></p>
+<p><img alt="Használat" src="images/usage_.gif" /></p>
                 
               
               
