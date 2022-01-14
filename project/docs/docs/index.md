@@ -84,6 +84,7 @@ Az ilyen módon átalakított címkekészletre elért eredmények SVM modell has
 |--------------------|:----------|:------|:---------|
 | Negatív            | 0,65      | 0,70  | 0,67     |
 | Pozitív            | 0,58      | 0,62  | 0,60     |
+| Semleges           | 0,50      | 0,19  | 0,28     |
 
 </center>
 
