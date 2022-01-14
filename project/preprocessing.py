@@ -4,12 +4,13 @@ import string
 from hungarian_stemmer.hungarian_stemmer import HungarianStemmer
 from digital_twin_distiller.ml_project import PreProcessorAbstract
 
+
 class PreprocessInput(PreProcessorAbstract):
     def run(self, input_data: dict):
         """
-
+        Processes and overwrites "text" from input dictionary: removes numeric numbers, Hungarian stopwords, punctuations, and stem the text with the use of hungarian-stemmer
         :param input_data:
-        :return:
+        :return: preprocessed text saved into "text" in input dictionary
         """
         text = input_data["text"]
         text = text.lower()
@@ -23,9 +24,9 @@ class PreprocessInput(PreProcessorAbstract):
     @staticmethod
     def cleaning_numbers(text: str) -> str:
         """
-        Method for deleteing numeric numbers from str
+        Method for deleting numeric numbers from str
         :param text: String for cleaning numeric numbers
-        :return:
+        :return: str with numeric numbers deleted
         """
 
         return re.sub("[0-9]+", "", text)
@@ -33,9 +34,9 @@ class PreprocessInput(PreProcessorAbstract):
     @staticmethod
     def cleaning_stopwords(text: str) -> str:
         """
-        Method for deleteing Hungarian stopwords from str
+        Method for deleting Hungarian stopwords from str
         :param text: String for cleaning stopwords
-        :return:
+        :return: str converted all whitespace characters to spaces and removed stopwords from it
         """
         stopwords = [
             "a",
@@ -246,7 +247,11 @@ class PreprocessInput(PreProcessorAbstract):
 
     @staticmethod
     def cleaning_punctuations(text: str) -> str:
-
+        """
+        Method for deleting punctuations from str
+        :param text: String for cleaning punctuations
+        :return: original str with punctuations deleted
+        """
 
         english_punctuations = string.punctuation
         punctuations_list = english_punctuations
@@ -257,8 +262,11 @@ class PreprocessInput(PreProcessorAbstract):
     @staticmethod
     def hungarian_stemmer_stem(text : str) -> str:
         """
-
+        Method for tokenize and stem Hungarian words with hungarian-stemmer
+        :param text: String for cleaning stopwords
+        :return: stem(s), concatenated with space character
         """
+
 
         hunstem = HungarianStemmer()
 

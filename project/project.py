@@ -7,8 +7,8 @@ sys.path.append(parentdir)
 
 from digital_twin_distiller import ml_project
 from digital_twin_distiller.modelpaths import ModelDir
-from preprocessing import PreprocessInput
-from predict import PredictSentiment
+from project.preprocessing import PreprocessInput
+from project.predict import PredictSentiment
 from digital_twin_distiller.encapsulator import Encapsulator
 
 class SentimentAnalyzerProject(ml_project.MachineLearningProject):

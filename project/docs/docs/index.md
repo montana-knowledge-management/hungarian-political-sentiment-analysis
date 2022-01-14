@@ -72,7 +72,9 @@ A betanítás során a SVM modell a következő eredményeket érte el emóció 
 
 A korpusz kiegyensúlyozatlansága miatt a jelenleg az API-ban használt modellek a fenti kategóriákat pozitív/negatív szentiment kategóriákra aggregáltuk a következők szerint: 
 * `Pozitív` címkét kapott: Várakozás, Öröm, Bizalom
-* `Negatív` címkét kapott: Szomorúság, Félelem, Harag, Undor, 
+* `Negatív` címkét kapott: Szomorúság, Félelem, Harag, Undor
+
+A korpusz tartalmazott még Semleges címkéjű mondatokat is, amelyek egyszerű tényleírások, érzelmi tartalmuk az annotátorok szerint nem volt.
 
 Az ilyen módon átalakított címkekészletre elért eredmények SVM modell használatával:
 

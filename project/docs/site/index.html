@@ -239,6 +239,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tovabbi-informaciok" class="md-nav__link">
+    További információk:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#az-elkeszult-modellek" class="md-nav__link">
     Az elkészült modellek
   </a>
@@ -322,6 +329,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#tovabbi-informaciok" class="md-nav__link">
+    További információk:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#az-elkeszult-modellek" class="md-nav__link">
     Az elkészült modellek
   </a>
@@ -361,7 +375,7 @@
                 
                 
                 <h1 id="felhasznaloi-kezikonyv-a-distiller-sentiment-analysis-api-hasznalatahoz">Felhasználói kézikönyv a Distiller Sentiment Analysis API használatához</h1>
-<p>Az implementáció alapja a MONTANA Tudásmenedzsment Kft. <a href="https://github.com/montana-knowledge-management/digital-twin-distiller">Digital Twin Distiller</a> keretrendszere.</p>
+<p>Az implementáció alapja a <a href="https://montana.hu/">MONTANA Tudásmenedzsment Kft.</a> <a href="https://github.com/montana-knowledge-management/digital-twin-distiller">Digital Twin Distiller</a> keretrendszere.</p>
 <h2 id="hasznalat">Használat</h2>
 <p>Az API az adatot JSON formátumban várja, az elemzendő mondatot a "text" attribútum értékeként megadva:</p>
 <pre><code>{
@@ -387,20 +401,26 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><img src="../images/categories.png" alt="categories" width="600"/></td>
+<td align="center"><img src="images/categories.png" alt="categories" width="600"/></td>
 <td align="center"><img src="images/tk_milab2.png" alt="distro" width="600"/></td>
 </tr>
 </tbody>
 </table>
 <p><center></p>
 <p><strong>Az egyes címkék megoszlása (db - mondat)</strong> <br>
-<img src="~/images/distribution.png" alt="disto2" width="400"/>
+<img src="images/emotion_2.png" alt="disto2" width="400"/>
 </center>
 <br></p>
 <p>Tekintettel arra, hogy a korpuszban kizárólag újsághírek szerepeltek, illetve arra,
 hogy a tanítás során az tanítóhalmaz elemeit egymondatos szövegek adták, 
 az éles működés során is hasonló bemeneten (újsághírek egymondatos egységein) 
 várható a legjobb eredmény.</p>
+<h3 id="tovabbi-informaciok">További információk:</h3>
+<ul>
+<li>Emóció kategóriák: <a href="https://journals.sagepub.com/doi/abs/10.1177/053901882021004003?journalCode=ssic">Plutchik, 1982</a></li>
+<li>Induktív kategóriarendszer az annotálás során: <a href="">Ring et. al.2022</a></li>
+<li>tkmilab: <a href="https://milab.tk.hu/hu">Link</a></li>
+</ul>
 <h3 id="az-elkeszult-modellek">Az elkészült modellek</h3>
 <p><br></p>
 <p>A modelleket az eredeti emóció kategóriákra, valamint az abból aggregált pozitív/negatív szentiment osztályokra is elvégeztük. A kapott modellek megtalálhatók a projekt <code>resources/Multiclass_case</code> mappájában, alapértelmezésként az alkalmazás a pozitív/negatív címkézésre alkalmas modellt használja.</p>
@@ -417,78 +437,81 @@ várható a legjobb eredmény.</p>
 </thead>
 <tbody>
 <tr>
-<td>Anger</td>
-<td align="left">0.45</td>
-<td align="left">0.43</td>
-<td align="left">0.44</td>
+<td>Harag</td>
+<td align="left">0, 45</td>
+<td align="left">0, 43</td>
+<td align="left">0, 44</td>
 </tr>
 <tr>
-<td>Anticipation</td>
-<td align="left">0.59</td>
-<td align="left">0.70</td>
-<td align="left">0.64</td>
+<td>Várakozás</td>
+<td align="left">0, 59</td>
+<td align="left">0, 70</td>
+<td align="left">0, 64</td>
 </tr>
 <tr>
-<td>Disgust</td>
-<td align="left">0.56</td>
-<td align="left">0.54</td>
-<td align="left">0.55</td>
+<td>Undor</td>
+<td align="left">0, 56</td>
+<td align="left">0, 54</td>
+<td align="left">0, 55</td>
 </tr>
 <tr>
-<td>Fear</td>
-<td align="left">1.00</td>
-<td align="left">0.08</td>
-<td align="left">0.15</td>
+<td>Félelem</td>
+<td align="left">1, 00</td>
+<td align="left">0, 08</td>
+<td align="left">0, 15</td>
 </tr>
 <tr>
-<td>Joy</td>
-<td align="left">1.00</td>
-<td align="left">0.14</td>
-<td align="left">0.25</td>
+<td>Öröm</td>
+<td align="left">1, 00</td>
+<td align="left">0, 14</td>
+<td align="left">0, 25</td>
 </tr>
 <tr>
-<td>Sadness</td>
-<td align="left">0.56</td>
-<td align="left">0.47</td>
-<td align="left">0.51</td>
+<td>Szomorúság</td>
+<td align="left">0, 56</td>
+<td align="left">0, 47</td>
+<td align="left">0, 51</td>
 </tr>
 <tr>
-<td>Trust</td>
-<td align="left">0.71</td>
-<td align="left">0.74</td>
-<td align="left">0.73</td>
-</tr>
-<tr>
-<td></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td>accuracy</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.58</td>
-</tr>
-<tr>
-<td>macro avg</td>
-<td align="left">0.70</td>
-<td align="left">0.44</td>
-<td align="left">0.47</td>
-</tr>
-<tr>
-<td>weighted avg</td>
-<td align="left">0.59</td>
-<td align="left">0.58</td>
-<td align="left">0.57</td>
+<td>Bizalom</td>
+<td align="left">0, 71</td>
+<td align="left">0, 74</td>
+<td align="left">0, 73</td>
 </tr>
 </tbody>
 </table>
 <p></center>
 <br></p>
 <p>A korpusz kiegyensúlyozatlansága miatt a jelenleg az API-ban használt modellek a fenti kategóriákat pozitív/negatív szentiment kategóriákra aggregáltuk a következők szerint: 
-* Pozitív címkét kapott: 
-* Negatív címkét kapott: </p>
+* <code>Pozitív</code> címkét kapott: Várakozás, Öröm, Bizalom
+* <code>Negatív</code> címkét kapott: Szomorúság, Félelem, Harag, Undor, </p>
+<p>Az ilyen módon átalakított címkekészletre elért eredmények SVM modell használatával:</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th>Szentiment osztály</th>
+<th align="left">Pontosság</th>
+<th align="left">Fedés</th>
+<th align="left">F1 érték</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Negatív</td>
+<td align="left">0,65</td>
+<td align="left">0,70</td>
+<td align="left">0,67</td>
+</tr>
+<tr>
+<td>Pozitív</td>
+<td align="left">0,58</td>
+<td align="left">0,62</td>
+<td align="left">0,60</td>
+</tr>
+</tbody>
+</table>
+<p></center></p>
 <h2 id="endpoint-ok">Endpoint-ok</h2>
 <ul>
 <li>
