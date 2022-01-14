@@ -1,7 +1,7 @@
 #Felhasználói kézikönyv a Distiller Sentiment Analysis API használatához
 
 
-Az implementáció alapja a MONTANA Tudásmenedzsment Kft. [Digital Twin Distiller](https://github.com/montana-knowledge-management/digital-twin-distiller) keretrendszere.
+Az implementáció alapja a [MONTANA Tudásmenedzsment Kft.](https://montana.hu/) [Digital Twin Distiller](https://github.com/montana-knowledge-management/digital-twin-distiller) keretrendszere.
 
 ## Használat
 
@@ -33,7 +33,7 @@ Az implementációban használt Support Vector Machine (SVM) modellek a [TK-Mila
 <center>
 
 **Az egyes címkék megoszlása (db - mondat)** <br>
-<img src="images/distribution.png" alt="disto2" width="400"/>
+<img src="images/emotion_2.png" alt="disto2" width="400"/>
 </center>
 <br>
 
@@ -42,6 +42,11 @@ Tekintettel arra, hogy a korpuszban kizárólag újsághírek szerepeltek, illet
 hogy a tanítás során az tanítóhalmaz elemeit egymondatos szövegek adták, 
 az éles működés során is hasonló bemeneten (újsághírek egymondatos egységein) 
 várható a legjobb eredmény.
+
+### További információk:
+* Emóció kategóriák: [Plutchik, 1982](https://journals.sagepub.com/doi/abs/10.1177/053901882021004003?journalCode=ssic)
+* Induktív kategóriarendszer az annotálás során: [Ring et. al.2022]()
+* tkmilab: [Link](https://milab.tk.hu/hu)
 
 ### Az elkészült modellek
 <br>
@@ -54,24 +59,31 @@ A betanítás során a SVM modell a következő eredményeket érte el emóció 
 
 | Emóció kategória | Pontosság | Fedés | F1 érték |
 |------------------|:----------|:------|:---------|
-| Anger            | 0.45      | 0.43  | 0.44     |
-| Anticipation     | 0.59      | 0.70  | 0.64     |
-| Disgust          | 0.56      | 0.54  | 0.55     |
-| Fear             | 1.00      | 0.08  | 0.15     |
-| Joy              | 1.00      | 0.14  | 0.25     |
-| Sadness          | 0.56      | 0.47  | 0.51     |
-| Trust            | 0.71      | 0.74  | 0.73     |
-|                  |           |       |          |
-| accuracy         |           |       | 0.58     |
-| macro avg        | 0.70      | 0.44  | 0.47     |
-| weighted avg     | 0.59      | 0.58  | 0.57     |
+| Harag            | 0, 45      | 0, 43  | 0, 44     |
+| Várakozás        | 0, 59      | 0, 70  | 0, 64     |
+| Undor            | 0, 56      | 0, 54  | 0, 55     |
+| Félelem          | 1, 00      | 0, 08  | 0, 15     |
+| Öröm             | 1, 00      | 0, 14  | 0, 25     |
+| Szomorúság       | 0, 56      | 0, 47  | 0, 51     |
+| Bizalom          | 0, 71      | 0, 74  | 0, 73     |
 
 </center>
 <br>
 
 A korpusz kiegyensúlyozatlansága miatt a jelenleg az API-ban használt modellek a fenti kategóriákat pozitív/negatív szentiment kategóriákra aggregáltuk a következők szerint: 
-* Pozitív címkét kapott: 
-* Negatív címkét kapott: 
+* `Pozitív` címkét kapott: Várakozás, Öröm, Bizalom
+* `Negatív` címkét kapott: Szomorúság, Félelem, Harag, Undor, 
+
+Az ilyen módon átalakított címkekészletre elért eredmények SVM modell használatával:
+
+<center>
+
+| Szentiment osztály | Pontosság | Fedés | F1 érték |
+|--------------------|:----------|:------|:---------|
+| Negatív            | 0,65      | 0,70  | 0,67     |
+| Pozitív            | 0,58      | 0,62  | 0,60     |
+
+</center>
 
 ## Endpoint-ok
 

@@ -17,6 +17,7 @@ python = "3.9"
 hunspell = "^0.5.5"
 digital-twin-distiller = "^2021.13"
 hungarian-stemmer = "^2022.1"
+mkdocs-material = "7.3.6"
 # list all devtools here
 [tool.poetry.dev-dependencies]
 black = "*"

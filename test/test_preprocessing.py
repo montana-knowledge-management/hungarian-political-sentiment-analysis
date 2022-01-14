@@ -34,7 +34,7 @@ class PreprocessingTestCase(unittest.TestCase):
         preprocessor = PreprocessInput()
         actual_text = list()
         for token in test_text:
-            stem = preprocessor.monSpellStem(token)
+            stem = preprocessor.hungarian_stemmer_stem(token)
             actual_text.append(stem.strip())
 
         self.assertTrue(actual_text)

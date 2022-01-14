@@ -1,11 +1,8 @@
 import re
 import string
-import hunspell
 
 from hungarian_stemmer.hungarian_stemmer import HungarianStemmer
 from digital_twin_distiller.ml_project import PreProcessorAbstract
-from importlib_resources import files
-
 
 class PreprocessInput(PreProcessorAbstract):
     def run(self, input_data: dict):
@@ -19,19 +16,25 @@ class PreprocessInput(PreProcessorAbstract):
         text = self.cleaning_numbers(text)
         text = self.cleaning_stopwords(text)
         text = self.cleaning_punctuations(text)
-        text = self.monSpellStem(text)
+        text = self.hungarian_stemmer_stem(text)
         input_data["text"] = text
         return input_data
 
     @staticmethod
-    def cleaning_numbers(text: str):
+    def cleaning_numbers(text: str) -> str:
+        """
+        Method for deleteing numeric numbers from str
+        :param text: String for cleaning numeric numbers
+        :return:
+        """
+
         return re.sub("[0-9]+", "", text)
 
     @staticmethod
-    def cleaning_stopwords(text: str):
+    def cleaning_stopwords(text: str) -> str:
         """
-
-        :param text:
+        Method for deleteing Hungarian stopwords from str
+        :param text: String for cleaning stopwords
         :return:
         """
         stopwords = [
@@ -242,7 +245,9 @@ class PreprocessInput(PreProcessorAbstract):
         return " ".join([word for word in str(text).split() if word not in stopwords])
 
     @staticmethod
-    def cleaning_punctuations(text: str):
+    def cleaning_punctuations(text: str) -> str:
+
+
         english_punctuations = string.punctuation
         punctuations_list = english_punctuations
 
@@ -250,9 +255,10 @@ class PreprocessInput(PreProcessorAbstract):
         return text.translate(translator)
 
     @staticmethod
-    def monSpellStem(text : str):
-        # hunspell_path = files("resources") / 'monstem' / 'hu_HU'
-        # hunspell_obj = hunspell.Hunspell(str(hunspell_path), str(hunspell_path))
+    def hungarian_stemmer_stem(text : str) -> str:
+        """
+
+        """
 
         hunstem = HungarianStemmer()
 
@@ -264,4 +270,4 @@ class PreprocessInput(PreProcessorAbstract):
                 asString = asString + " " + item
             returnlist.append(asString)
 
-        return (" ".join(returnlist).replace("  ", " "))
+        return " ".join(returnlist).replace("  ", " ")
